@@ -1,0 +1,16 @@
+<?php
+
+{{#params}}
+$queryString = http_build_query({{{params}}});
+{{/params}}
+
+$response = \Illuminate\Support\Facades\Http::{{#bearerToken}}withToken('{{bearerToken}}')->{{/bearerToken}}{{#basicAuth}}withBasicAuth({{{basicAuth}}})->{{/basicAuth}}{{#asForm}}asForm()->{{/asForm}}{{#asFile}}attach('attachment', file_get_contents('path-to-your-file.jpg'), 'your-filename.jpg')->{{/asFile}}{{#asMultipart}}attach('attachment', file_get_contents('path-to-your-file.jpg'), 'your-filename.jpg')->{{/asMultipart}}{{#headers}}withHeaders({{{headers}}})->{{/headers}}{{method}}("{{{url}}}{{#params}}?{$queryString}{{/params}}"{{#body}}, {{{ body }}}{{/body}}){{#timeout}}->timeout({{{ timeout }}}){{/timeout}};
+
+if($response->successful())
+{
+    $body = $response->json();
+}
+else
+{
+    // handle
+}
