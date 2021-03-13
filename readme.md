@@ -6,13 +6,20 @@ Supports GET, POST, PUT, PATCH and DELETE requests.
 
 [Paw](https://paw.cloud) – The most advanced API tool for Mac
 
-## Post
+## Installation
+
+Clone this repo to:
+```/Users/USERNAME/Library/Containers/com.luckymarmot.Paw/Data/Library/Application Support/com.luckymarmot.Paw/Extensions/com.bfgdivision.PawExtensions.LaravelHttpCodeGenerator```
+
+## Output Examples
+
+### Post
 
 ```php
 $response = \Illuminate\Support\Facades\Http::withToken('full-token-here')->post("https://website.com/api/endpoint", [
-	"type" => "transaction",
-	"entry" => [
-		[
+    "type" => "transaction",
+    "entry" => [
+        [
             "resource" => [
                 "gender" => "female",
                 "address" => [
@@ -25,47 +32,41 @@ $response = \Illuminate\Support\Facades\Http::withToken('full-token-here')->post
                     ]
                 ],
             ]
-		]
-	],
-	"resourceType" => "Bundle"
+        ]
+    ],
+    "resourceType" => "Bundle"
 ]);
 ```
 
-## Form requests
+### Form requests
 ```php
 $response = \Illuminate\Support\Facades\Http::asForm()->post("https://website.com/connect/token", [
-	"client_id" => "abc",
-	"client_secret" => "123",
-	"scope" => "order_api",
-	"grant_type" => "client_credentials"
+    "client_id" => "abc",
+    "client_secret" => "123",
+    "scope" => "order_api",
+    "grant_type" => "client_credentials"
 ]);
 ```
 
-## Basic Auth
+### Basic Auth
 
 ```php
 $queryString = http_build_query([
-	"max" => "25",
-	"calendarID" => "3423206",
-	"minDate" => "2019-12-01"
+    "max" => "25",
+    "calendarID" => "3423206",
+    "minDate" => "2019-12-01"
 ]);
 
 $response = \Illuminate\Support\Facades\Http::withBasicAuth('username', 'password')->withHeaders([
-	"Cookie" => "PHPSESSID=odf5956n5hgvf17ifbrmolf7f0"
+    "Cookie" => "PHPSESSID=odf5956n5hgvf17ifbrmolf7f0"
 ])->get("https://website.com/api/appointments?{$queryString}");
 ```
-
-### Paw Extension Documentation
-https://paw.cloud/docs/reference/Request
-
-## Contribution Guidelines
 
 
 ## Tests
 To run tests:
 
 `npm run test`
-
 
 
 ## Notes
